@@ -65,3 +65,195 @@ happ/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/re
 happ/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-cs/values-cs.xml,1/a/1a8dc090c605fd5f6ef8b7320e328a0a73b17e6e
 ˜
 happ/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-da/values-da.xml,a/8/a83386c55e62bc7ccefc5072e420744611f9aaf5
+˜
+happ/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-de/values-de.xml,c/3/c3440b27a7883976f412cd09bc9dda13d5e6c6e6
+˜
+happ/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-el/values-el.xml,f/4/f416532f4c43b70eac37c4cc691b72308c77e0ee
+Ž
+^app/build/intermediates/exploded-aar/com.android.support/support-v4/25.1.0/AndroidManifest.xml,5/5/556c4c30c1ee6e92e494a202fe55ccae469b799e
+˜
+happ/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-af/values-af.xml,4/d/4dc0f44234160f9fa13613816f52e2a2640bfedb
+˜
+happ/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-it/values-it.xml,7/7/7755becee977504e43e1294b29536385eeb07b0c
+˜
+happ/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-iw/values-iw.xml,f/e/fec8cbe3b23be2cef6b3208d5187eb0178954f2d
+˜
+happ/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-ja/values-ja.xml,b/c/bc4591fcd8e1d2ea841f17c7a9d3feb2289377ea
+˜
+happ/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-ko/values-ko.xml,0/2/02953eb13d19c86521ac154807784ad522ff8d19
+˜
+happ/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-lt/values-lt.xml,c/0/c0b3cba04c8ceca42d449f83df49f5900921c2f6
+˜
+happ/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-lv/values-lv.xml,5/1/514a29baa776a8446a6b803d4ba210360cf2f489
+˜
+happ/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-nb/values-nb.xml,1/5/15f0b6737c5ade23ecbbfb18bb34f1883543b963
+˜
+happ/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-nl/values-nl.xml,2/9/297d94f224463216a952aef49a8756598850fd3f
+˜
+happ/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-es/values-es.xml,7/2/7235dc77371684bd44f46ff0e52e7e2abf19051b
+˜
+happ/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-fa/values-fa.xml,9/3/93bbe5230e4b04144f529e7d39bcbc4cc5d3fd5b
+˜
+happ/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-fi/values-fi.xml,7/6/76dfb41a4563f5137833c50daf68205dd323f424
+˜
+happ/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-fr/values-fr.xml,e/2/e261126f0cc22bf69fa05f7cfa51cf9738ee335e
+˜
+happ/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-hi/values-hi.xml,5/e/5e13df650152c3428f51374c5837636b9156d558
+˜
+happ/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-hr/values-hr.xml,6/5/652555467e5402085538f9b293acdf6c43044d36
+˜
+happ/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-hu/values-hu.xml,1/5/15f3bc4525a9aff8eed58948da2f290f16aa9041
+¨
+xapp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-h720dp-v13/values-h720dp-v13.xml,f/1/f17cc93097c9cef4dda8418d82983940f9b6eb03
+˜
+happ/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-in/values-in.xml,e/4/e48c67df3535de3e7a6a2a6450e8706c60930736
+˜
+happ/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-sw/values-sw.xml,f/1/f1f24eeb23533872be59f5d9f31666cfaf285007
+˜
+happ/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-th/values-th.xml,a/9/a9750a2fd685d54f8b233c65f7cb470a72a3b899
+˜
+happ/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-tl/values-tl.xml,0/d/0d7f5e655e7917427c51ca70c4bab10123f343aa
+˜
+happ/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-tr/values-tr.xml,8/f/8f0ce26f82738bc0075eb1300db04db2d7d0a90a
+˜
+happ/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-uk/values-uk.xml,7/2/72abdf1a50e7e305dfd656ede7f9eb27da13b855
+˜
+happ/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-vi/values-vi.xml,3/5/35c47ad5ae324f5f7319761385a777afb6bea763
+˜
+happ/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-zu/values-zu.xml,c/b/cb1f2a914a9ed5a562c79372d1d9591fd4d6a613
+˜
+happ/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-pl/values-pl.xml,1/a/1aa9acadeeeb17f053fc00cf5a8a59448487b31e
+˜
+happ/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-pt/values-pt.xml,a/c/acb95ca40a0d5f896fb527159d6f7a0824588ed1
+˜
+happ/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-ro/values-ro.xml,9/5/954e657eeb4b9bffcadfce23a28e8e3842f223ed
+˜
+happ/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-ru/values-ru.xml,9/b/9b89d82d012383707dee4ac9f2f871f8f21ec997
+˜
+happ/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-sk/values-sk.xml,b/f/bf87a708a610d1b5b8b0c92215de2b1afd248496
+˜
+happ/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-sl/values-sl.xml,4/6/4629056af26eb80b58a8a6bf2b59472a94a8038f
+˜
+happ/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-sr/values-sr.xml,3/3/33166f43f70bc71d88c077803b700c2716d0f61f
+˜
+happ/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-sv/values-sv.xml,8/e/8e92a14ad7545501df8aadbce6fc5386fd82c9e4
+š
+japp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-v11/values-v11.xml,d/e/de38c62dd3128eed4cdcec70c733d6883b46246c
+š
+japp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-v12/values-v12.xml,d/5/d5784736d747171b01766991a52fd40baa4a4ccd
+š
+japp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-v13/values-v13.xml,b/d/bde6536775969e4787bb7e6f667dda23ed9be40e
+š
+japp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-v14/values-v14.xml,8/9/892a055d172f3a77ff0e6f0b1ee743c3a5ede8ec
+š
+japp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-v16/values-v16.xml,2/d/2d8b61fbb5becfbb0d043d1a646cb387d902ac9a
+š
+japp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-v17/values-v17.xml,4/a/4a0e46eef242c6d95041b86d8db857148349311e
+ 
+papp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-az-rAZ/values-az-rAZ.xml,6/0/60e92ee28be1c6767066277111496f4fbe10f0a4
+ 
+papp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-be-rBY/values-be-rBY.xml,9/5/957d2121fc90c5d4cf50ace4a54e7992b901714a
+ 
+papp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-bn-rBD/values-bn-rBD.xml,a/7/a7ce693b38c03a94ccefd8b45b63c90ddabe1e01
+š
+japp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-v18/values-v18.xml,b/1/b17c4e62b361bec8a7f3ee31b78549added8f607
+š
+japp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-v21/values-v21.xml,8/0/8069ed46e02a16829e9a923f5b9534c657d7c29b
+š
+japp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-v22/values-v22.xml,7/1/713bcff6753d8122121a64dd31b9c94d32e4a47a
+š
+japp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-v23/values-v23.xml,0/a/0a2f0654a3908b5d74721cded1d20dd6fc227ce2
+š
+japp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-v24/values-v24.xml,4/1/417dd4f91f6b83096ab9d3d4140fc528a5bba600
+š
+japp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-v25/values-v25.xml,b/2/b2c6e0c8ca1d82741f0f4b094066482ca5996b3f
+œ
+lapp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-land/values-land.xml,5/e/5ed26894b0cb6801751d182dc07fe65006bfa1df
+ª
+zapp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-sw600dp-v13/values-sw600dp-v13.xml,1/0/1067e5ad83e337f2e533b5a21ab9dd33fbbed132
+œ
+lapp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-port/values-port.xml,0/2/02d7391f8292d59cc060e2b273b5086039ae2f31
+ 
+papp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-gl-rES/values-gl-rES.xml,5/c/5cce94d5e03f2e3b6b57129ed3625dff833541ed
+ 
+papp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-gu-rIN/values-gu-rIN.xml,d/d/ddbc93718917d38141a362a22c358944f5f27f25
+ 
+papp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-hy-rAM/values-hy-rAM.xml,0/8/08ab20076dbfee7df693175b03c3c2b64d359b87
+ 
+papp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-is-rIS/values-is-rIS.xml,d/e/de1f60e97248fe3d34e5b1c4b16bcffdf4d8c9c2
+ 
+papp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-ka-rGE/values-ka-rGE.xml,c/3/c3e9dfedd00ae92e6a9e7e79b4bbc59526064e9c
+ 
+papp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-kk-rKZ/values-kk-rKZ.xml,5/c/5c684261c464bdebb3af2a2ecb9aed38aa896f06
+ 
+papp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-km-rKH/values-km-rKH.xml,2/d/2d28919bd8d2a0308b8e3fd38faa70b8b816e97b
+ 
+papp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-kn-rIN/values-kn-rIN.xml,7/0/7045d91abcd8bad0530e480a249c800b65c43128
+ 
+papp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-bs-rBA/values-bs-rBA.xml,a/e/ae2cc017b3ff8ae4edccc7cd172eeb5d109a428f
+ 
+papp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-en-rAU/values-en-rAU.xml,7/7/77a0e1e91de4dd1671f5135a07c3e56cdd89a04f
+ 
+papp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-en-rGB/values-en-rGB.xml,a/c/ac75fd7577f1a0d3b91a22a1a90625d3a8e84078
+ 
+papp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-en-rIN/values-en-rIN.xml,4/c/4c07d122acb4cdb26cb4019a0179db043869f58d
+ 
+papp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-es-rUS/values-es-rUS.xml,b/c/bc0f1d2295622814e79f56b48296f6f8dc9b0b60
+ 
+papp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-et-rEE/values-et-rEE.xml,3/4/34f63b8b0bc47caad962f6c65ab9c3e397f71502
+ 
+papp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-fr-rCA/values-fr-rCA.xml,b/a/ba57dbe31dfad9cb7c0b566c40490cf0fa3a3592
+ 
+papp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-ne-rNP/values-ne-rNP.xml,9/6/96d4de2eba80528dd68971a437ad26d0b6e18239
+ 
+papp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-pa-rIN/values-pa-rIN.xml,a/3/a32c4b978783c442ba0c58dee54b85a92dcead75
+ 
+papp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-pt-rBR/values-pt-rBR.xml,3/c/3c204bfcd68182f14bb68d03fe0f6672b0bb2a74
+ 
+papp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-pt-rPT/values-pt-rPT.xml,c/a/ca7ca41010dca8560522d1fabe7799f1eb059985
+ 
+papp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-sq-rAL/values-sq-rAL.xml,d/0/d0f5253c3055e3e729635d8c13e21e1e8aee14c2
+ 
+papp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-ta-rIN/values-ta-rIN.xml,d/c/dc47f1fa99d0e3b2ef29cafe26bb5ebd6643c5e4
+ 
+papp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-ky-rKG/values-ky-rKG.xml,9/e/9ea2469b5a2a71799240a81924fb5ab20f2ac0b4
+ 
+papp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-lo-rLA/values-lo-rLA.xml,4/6/467ac1e042ba45e13aef27678cd88d99fe504d27
+ 
+papp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-mk-rMK/values-mk-rMK.xml,8/d/8da5dfaa52f6e9e76297ad842d2a2477a94bc783
+ 
+papp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-ml-rIN/values-ml-rIN.xml,b/6/b6cf347061216cf918a4f80a4838f7467bc74f88
+ 
+papp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-mn-rMN/values-mn-rMN.xml,4/8/48f69d7078c4e63cc24af8771b6fda2f26251573
+ 
+papp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-mr-rIN/values-mr-rIN.xml,3/4/344ac9567e6e88ab5d882bd851d990a99e66b3b8
+ 
+papp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-ms-rMY/values-ms-rMY.xml,1/1/11462b256d2cd55eaa359d50cf48771672c4ff21
+ 
+papp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-my-rMM/values-my-rMM.xml,8/b/8b6bc48d253a720216ca655bd4dd0b92ab2acef1
+ 
+papp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-ur-rPK/values-ur-rPK.xml,f/f/ff95bacbe2b4009fcbc8c9dab07e9377306cab15
+ 
+papp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-uz-rUZ/values-uz-rUZ.xml,1/a/1aa062690d0959cc9dd26822f9f39639f827200c
+ 
+papp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-zh-rCN/values-zh-rCN.xml,8/f/8fe5a23f33a4caf9d0fbc2e92f533dce3ac838d4
+ 
+papp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-zh-rHK/values-zh-rHK.xml,d/7/d7ec6ce9e15b3332b3b60fedef73ba2614bd0eb3
+ 
+papp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-zh-rTW/values-zh-rTW.xml,4/5/459e747edc46df737fcd3d156b549c56c50a5fb9
+¤
+tapp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-large-v4/values-large-v4.xml,4/a/4ac722ef43ce0b0e679cd22a4f960b4222ccf8d3
+¤
+tapp/build/intermediates/exploded-aar/com.android.support/appcompat-v7/25.1.0/res/values-night-v8/values-night-v8.xml,6/0/6019c96aacf32f6765382f4bdfed954314f5fe94
+h
+8tagview/src/main/java/vn/eazy/tagview/demo/Constant.java,5/e/5eae0aad9c3e1c1309570b04fd0279572a9cb037
+r
+Btagview/src/main/java/vn/eazy/tagview/demo/ClickableColorSpan.java,3/6/36a05e369d505d0414772a6315197aa23e6fa8f0
+œ
+lapp/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/25.1.0/AndroidManifest.xml,4/0/40c02ad9a9c06e7b53dc2141ff06835f39aa2361
+›
+kapp/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/25.1.0/AndroidManifest.xml,4/5/45ee4edc1ab696d21f3ce36c003a9597354a76c5
+m
+=tagview/src/main/java/vn/eazy/tagview/widget/TagTextView.java,c/6/c682123ec97fdd7030525c96d556e8ffb1aa948e
+m
+=tagview/src/main/java/vn/eazy/tagview/demo/ActiveHashTag.java,3/8/38191adc88c39ad03ff82c6b8f28caca4eb334ea

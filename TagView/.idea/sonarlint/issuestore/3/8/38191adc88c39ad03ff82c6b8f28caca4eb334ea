@@ -1,0 +1,23 @@
+
+squid:S1151’"jReduce this switch case number of lines from 11 to at most 5, for example by extracting code into methods.(¬¡Ö¬øÿÿÿÿ8ò„À¢+
+osquid:S1301…"KReplace this "switch" statement by "if" statements to increase readability.(ÎÍ›ªıÿÿÿÿ8ò„À¢+
+q
+squid:S134‹"NRefactor this code to not nest more than 3 if/for/while/switch/try statements.(êæ°µÿÿÿÿÿ8ò„À¢+
+`squid:S2583ã"CChange this condition so that it does not always evaluate to "true"(ó‹ãÛùÿÿÿÿ
+Lsquid:S1066¬"/Merge this if statement with the enclosing one.(ÀâÁûÿÿÿÿ
+˜squid:S1186?"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(±¾ê
+]"squid:SwitchLastCaseIsDefaultCheck…""Add a default case to this switch.(ÎÍ›ªıÿÿÿÿ8ò„À¢+
+q
+squid:S134—"NRefactor this code to not nest more than 3 if/for/while/switch/try statements.(êæ°µÿÿÿÿÿ8ò„À¢+
+fsquid:S00116"NRename this field "TAG" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(î®¾«
+u
+squid:S135§"YReduce the total number of break and continue statements in this loop to use at most one.(«ñˆôüÿÿÿÿ
+Zsquid:S3398q">Move this method into the anonymous class declared at line 49.(Ñº¬Şüÿÿÿÿ
+Dsquid:S1166Ğ"%Either log or rethrow this exception.(”ı¾8£Ü´º¢+
+isquid:CommentedOutCodeLines"<This block of commented-out lines of code should be removed.(È±ôÍ8Ş©ñÀ¢+
+Msquid:S1068!"/Remove this unused "currContent" private field.(ˆ‹˜ß8°êÄ½¢+
+isquid:CommentedOutCodeLineu"<This block of commented-out lines of code should be removed.(ÈåËç8¦İ™À¢+
+˜squid:S11863"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(«û³±
+rsquid:S00122ã"TAt most one statement is allowed per line, but 2 statements were found on this line.(ó‹ãÛùÿÿÿÿ
+csquid:S00112l"FDefine and throw a dedicated exception instead of using a generic one.(ı­Øƒÿÿÿÿÿ
+squid:S1151†"jReduce this switch case number of lines from 11 to at most 5, for example by extracting code into methods.(Šâ£†øÿÿÿÿ8ò„À¢+
