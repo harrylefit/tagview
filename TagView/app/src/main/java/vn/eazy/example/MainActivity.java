@@ -3,16 +3,17 @@ package vn.eazy.example;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import vn.eazy.tagview.adapter.EazySuggestionAdapter;
 import vn.eazy.tagview.core.ActiveHashTag;
-import vn.eazy.tagview.listener.DataItemListener;
-import vn.eazy.tagview.model.BaseData;
+import vn.eazy.tagview.event.SuggestionItemEvent;
 import vn.eazy.tagview.model.SimpleData;
 import vn.eazy.tagview.widget.TagEditTextView;
 import vn.eazy.tagview.widget.TagTextView;
@@ -28,24 +29,18 @@ public class MainActivity extends AppCompatActivity implements ActiveHashTag.OnH
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        tvContent = (TagTextView) findViewById(R.id.tvContent);
-        String content = "<b>Harry</b> #harry @long #jon <i>Long</i> #john @julian";
-        tvContent.appendText(content);
-        tvContent.setHashTagClickListener(this);
+//        tvContent = (TagTextView) findViewById(R.id.tvContent);
+//        String content = "<b>Harry</b> #harry @long #jon <i>Long</i> #john @julian";
+//        tvContent.appendText(content);
+//        tvContent.setHashTagClickListener(this);
 
         tvInput = (TagEditTextView) findViewById(R.id.tvInput);
         tvInput.setHashTagClickListener(this);
         tvInput.setOnTypingListener(this);
 
-
         eazySuggestionAdapter = new EazySuggestionAdapter(getApplicationContext());
         tvInput.setSuggestionAdapter(eazySuggestionAdapter);
-        tvInput.setOnItemClick(new DataItemListener() {
-            @Override
-            public void onClickItem(View view, BaseData data) {
-                Toast.makeText(getApplicationContext(), data.getItemTitle(), Toast.LENGTH_SHORT).show();
-            }
-        });
+
         List<SimpleData> simpleDatas = new ArrayList<>();
         simpleDatas.add(new SimpleData("Harry", "SS"));
         simpleDatas.add(new SimpleData("John", "SS"));
@@ -57,8 +52,23 @@ public class MainActivity extends AppCompatActivity implements ActiveHashTag.OnH
 
         eazySuggestionAdapter.addAll(simpleDatas);
 
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
     }
 
+    @Subscribe
+    public void onEvent(SuggestionItemEvent suggestionItemEvent) {
+        Toast.makeText(getApplicationContext(), suggestionItemEvent.getData().getItemTitle()
+                , Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        tvInput.release();
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
 
     @Override
     public void onHashTagClicked(String hashTag) {

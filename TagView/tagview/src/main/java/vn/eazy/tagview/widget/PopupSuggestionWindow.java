@@ -11,21 +11,22 @@ import android.view.ViewGroup;
 
 import com.labo.kaji.relativepopupwindow.RelativePopupWindow;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import vn.eazy.tagview.R;
 import vn.eazy.tagview.adapter.SuggestionAdapter;
-import vn.eazy.tagview.listener.DataItemListener;
-import vn.eazy.tagview.model.BaseData;
+import vn.eazy.tagview.event.SuggestionItemEvent;
 
 
 /**
  * Created by Harry on 2/14/17.
  */
 
-public class PopupSuggestionWindow extends RelativePopupWindow implements SuggestionAdapter.CallbackDataListener {
+public class PopupSuggestionWindow extends RelativePopupWindow {
     private RecyclerView rvData;
     private SuggestionAdapter adapter;
     private LinearLayoutManager llm;
-    private DataItemListener onItemClickListener;
 
     public PopupSuggestionWindow(Context context, int widthPopup) {
         super(context);
@@ -44,11 +45,23 @@ public class PopupSuggestionWindow extends RelativePopupWindow implements Sugges
         rvData = (RecyclerView) getContentView().findViewById(R.id.rvData);
         llm = new LinearLayoutManager(context);
         rvData.setLayoutManager(llm);
+
+        if (!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
+    }
+
+    @Subscribe
+    public void onEvent(SuggestionItemEvent suggestionItemEvent){
+        dismiss();
+    }
+
+    public void release(){
+        EventBus.getDefault().unregister(this);
     }
 
     public void setAdapter(SuggestionAdapter adapter) {
         this.adapter = adapter;
-        this.adapter.setDataListener(this);
         if (rvData != null) {
             rvData.setAdapter(adapter);
         }
@@ -56,15 +69,5 @@ public class PopupSuggestionWindow extends RelativePopupWindow implements Sugges
 
     public SuggestionAdapter getAdapter() {
         return adapter;
-    }
-
-    public void setOnItemClickListener(DataItemListener onItemClickListener) {
-        this.onItemClickListener = onItemClickListener;
-        adapter.setOnItemClickListener(this.onItemClickListener);
-    }
-
-    @Override
-    public void callbackData(BaseData data) {
-        dismiss();
     }
 }

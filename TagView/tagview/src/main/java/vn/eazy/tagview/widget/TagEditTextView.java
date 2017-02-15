@@ -16,7 +16,6 @@ import com.labo.kaji.relativepopupwindow.RelativePopupWindow;
 import vn.eazy.tagview.R;
 import vn.eazy.tagview.adapter.SuggestionAdapter;
 import vn.eazy.tagview.core.ActiveHashTag;
-import vn.eazy.tagview.listener.DataItemListener;
 import vn.eazy.tagview.model.BaseData;
 
 /**
@@ -32,7 +31,6 @@ public class TagEditTextView<T extends BaseData> extends EditText {
     private OnTypingListener onTypingListener;
     private PopupSuggestionWindow suggestionWindow;
     private SuggestionAdapter suggestionAdapter;
-    private DataItemListener dataItemListener;
 
     public interface OnTypingListener {
         void onTypingHashTag(String hashTag);
@@ -87,19 +85,11 @@ public class TagEditTextView<T extends BaseData> extends EditText {
                 suggestionWindow = new PopupSuggestionWindow(getContext(), getMeasuredWidth());
                 if (suggestionAdapter != null && suggestionWindow.getAdapter() == null) {
                     suggestionWindow.setAdapter(suggestionAdapter);
-                    suggestionWindow.setOnItemClickListener(dataItemListener);
                 }
             }
         });
     }
 
-
-    public void setOnItemClick(DataItemListener listener) {
-        this.dataItemListener = listener;
-        if (suggestionWindow != null) {
-            suggestionWindow.setOnItemClickListener(listener);
-        }
-    }
 
     public void showSuggestionDataPopup() {
         if (suggestionWindow != null) {
@@ -170,6 +160,7 @@ public class TagEditTextView<T extends BaseData> extends EditText {
     public void setHashTagClickListener(ActiveHashTag.OnHashTagClickListener hashTagClickListener) {
         this.hashTagClickListener = hashTagClickListener;
         activeHashTag.removeTextWatcher();
+        activeHashTag.release();
         createActiveHashTag();
     }
 
@@ -187,6 +178,13 @@ public class TagEditTextView<T extends BaseData> extends EditText {
             suggestionWindow.setAdapter(suggestionAdapter);
         } else {
             this.suggestionAdapter = suggestionAdapter;
+        }
+    }
+
+    public void release() {
+        if (suggestionWindow != null) {
+            suggestionWindow.release();
+            activeHashTag.release();
         }
     }
 }

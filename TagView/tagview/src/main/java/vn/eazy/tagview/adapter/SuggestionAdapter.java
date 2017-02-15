@@ -5,10 +5,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import vn.eazy.tagview.listener.DataItemListener;
+import vn.eazy.tagview.event.SuggestionItemEvent;
 import vn.eazy.tagview.model.BaseData;
 
 /**
@@ -18,8 +20,6 @@ import vn.eazy.tagview.model.BaseData;
 public abstract class SuggestionAdapter<T extends BaseData, V extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<V> implements View.OnClickListener {
     private Context context;
     private List<T> list;
-    private DataItemListener onItemClickListener;
-    private CallbackDataListener dataListener;
 
     public interface CallbackDataListener {
         void callbackData(BaseData data);
@@ -35,10 +35,8 @@ public abstract class SuggestionAdapter<T extends BaseData, V extends RecyclerVi
     @Override
     public void onBindViewHolder(V holder, int position) {
         onSuggestBindViewHolder(holder, position, list.get(position));
-        if (onItemClickListener != null) {
-            holder.itemView.setTag(list.get(position));
-            holder.itemView.setOnClickListener(this);
-        }
+        holder.itemView.setTag(list.get(position));
+        holder.itemView.setOnClickListener(this);
     }
 
     protected abstract void onSuggestBindViewHolder(V holder, int pos, T data);
@@ -79,19 +77,10 @@ public abstract class SuggestionAdapter<T extends BaseData, V extends RecyclerVi
         return getLayoutViewHolder(parent, viewType);
     }
 
-    public void setOnItemClickListener(DataItemListener onItemClickListener) {
-        this.onItemClickListener = onItemClickListener;
-    }
-
     @Override
     public void onClick(View view) {
-        onItemClickListener.onClickItem(view, (BaseData) view.getTag());
-        if (dataListener != null) {
-            dataListener.callbackData((BaseData) view.getTag());
-        }
+        EventBus.getDefault().post(new SuggestionItemEvent((BaseData) view.getTag()));
     }
 
-    public void setDataListener(CallbackDataListener dataListener) {
-        this.dataListener = dataListener;
-    }
+
 }

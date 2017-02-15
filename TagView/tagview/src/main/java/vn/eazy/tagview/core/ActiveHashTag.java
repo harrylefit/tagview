@@ -10,14 +10,19 @@ import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.widget.TextView;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import vn.eazy.tagview.event.ActionEvent;
+import vn.eazy.tagview.event.SuggestionItemEvent;
 import vn.eazy.tagview.widget.TagEditTextView;
 
-public final class ActiveHashTag implements ClickableColorSpan.OnHashTagClickListener {
+public final class ActiveHashTag implements ClickableColorSpan.OnHashTagClickListener, ActionEvent {
     private final String TAG = ActiveHashTag.class.getSimpleName();
     private OnHashTagClickListener onHashTagClickListener;
 
@@ -37,6 +42,8 @@ public final class ActiveHashTag implements ClickableColorSpan.OnHashTagClickLis
     private String lastMention = "";
     private String lastContent = "";
 
+    private boolean isChooseDataFromSuggestionList = false;
+
     private enum TYPE {
         HASHTAG, MENTION;
     }
@@ -51,6 +58,28 @@ public final class ActiveHashTag implements ClickableColorSpan.OnHashTagClickLis
         }
     }
 
+    @Override
+    public void register() {
+        if (textView instanceof TagEditTextView) {
+            if (!EventBus.getDefault().isRegistered(this)) {
+                EventBus.getDefault().register(this);
+            }
+        }
+    }
+
+    @Override
+    public void unregister() {
+        if (textView instanceof TagEditTextView) {
+            EventBus.getDefault().unregister(this);
+        }
+    }
+
+    @Override
+    public void release() {
+        unregister();
+    }
+
+
     private final TextWatcher textWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -64,9 +93,9 @@ public final class ActiveHashTag implements ClickableColorSpan.OnHashTagClickLis
                 if (textView instanceof TagEditTextView) {
                     int sizeText = text.length() - 1;
                     switch (text.charAt(sizeText)) {
-                        case ' ':
-                        case '@':
-                        case '#':
+                        case Constant.SPACE:
+                        case Constant.AT:
+                        case Constant.SHARP:
                             ((TagEditTextView) textView).dimissPopup();
                             break;
                     }
@@ -100,6 +129,25 @@ public final class ActiveHashTag implements ClickableColorSpan.OnHashTagClickLis
         }
     }
 
+    @Subscribe
+    public void onEvent(SuggestionItemEvent suggestionItemEvent) {
+        if(textView instanceof TagEditTextView) {
+            isChooseDataFromSuggestionList = true;
+            int indexLastMention = textView.getText().toString().lastIndexOf(getLastMention(textView.getText()));
+            int indexLastHashTag = textView.getText().toString().lastIndexOf(getLastHashTag(textView.getText()));
+            if (indexLastMention == textView.length() || indexLastHashTag > indexLastMention) {
+                textView.setText(textView.getText().toString().replace("#" + getLastHashTag(textView.getText())
+                        , "#" + suggestionItemEvent.getData().getItemTitle()));
+
+            } else {
+                textView.setText(textView.getText().toString().replace("@" + getLastMention(textView.getText())
+                        , "@" + suggestionItemEvent.getData().getItemTitle()));
+            }
+        }
+        textView.requestFocus();
+        ((TagEditTextView)textView).setSelection(textView.getText().length());
+    }
+
     public void operate(TextView textView) {
         operate(textView, true);
     }
@@ -109,9 +157,10 @@ public final class ActiveHashTag implements ClickableColorSpan.OnHashTagClickLis
     }
 
     public void operate(TextView textView, boolean textWatcherEnable) {
-
         if (null == this.textView) {
             this.textView = textView;
+
+            register();
 
             if (textWatcherEnable) {
                 textView.addTextChangedListener(textWatcher);
@@ -158,20 +207,25 @@ public final class ActiveHashTag implements ClickableColorSpan.OnHashTagClickLis
     }
 
     public String getLastHashTag(@NonNull CharSequence text) {
-        String[] hashTags = text.toString().replace(" ", "").split("#");
-        if (hashTags.length != 0) {
-            return hashTags[hashTags.length - 1].trim();
+        int indexOfLastHashTag = text.toString().lastIndexOf(Constant.SHARP);
+        if (indexOfLastHashTag == -1) {
+            return "";
+        } else {
+            String[] contents = text.toString().substring(indexOfLastHashTag + 1, text.length()).toString().split(" ");
+            if (contents.length != 0) {
+                return contents[0].trim();
+            }
+            return "";
         }
-        return "";
     }
 
 
     public String getLastMention(@NonNull CharSequence text) {
-        int indexOfLastMention = text.toString().lastIndexOf("@");
+        int indexOfLastMention = text.toString().lastIndexOf(Constant.AT);
         if (indexOfLastMention == -1) {
             return "";
         } else {
-            String[] contents = text.toString().substring(indexOfLastMention, text.length()).toString().split(" ");
+            String[] contents = text.toString().substring(indexOfLastMention + 1, text.length()).toString().split(" ");
             if (contents.length != 0) {
                 return contents[0].trim();
             }
@@ -276,19 +330,27 @@ public final class ActiveHashTag implements ClickableColorSpan.OnHashTagClickLis
     }
 
     private void callbackContent(TYPE type) {
-        if (type == TYPE.HASHTAG) {
-            if (textView instanceof TagEditTextView && ((TagEditTextView) textView).getOnTypingListener() != null
-                    && !isContainSpaceBehindLastLinkable(textView.getText().toString(), getLastHashTag(textView.getText()))
-                    && !lastHashTag.equals(getLastHashTag(textView.getText()))) {
-                lastHashTag = getLastHashTag(textView.getText());
-                ((TagEditTextView) textView).getOnTypingListener().onTypingHashTag(getLastHashTag(textView.getText()));
-            }
-        } else {
-            if (textView instanceof TagEditTextView && ((TagEditTextView) textView).getOnTypingListener() != null
-                    && !isContainSpaceBehindLastLinkable(textView.getText().toString(), getLastMention(textView.getText()))
-                    && !lastMention.equals(getLastMention(textView.getText()))) {
-                lastMention = getLastMention(textView.getText());
-                ((TagEditTextView) textView).getOnTypingListener().onTypingMention(getLastMention(textView.getText()));
+            if (type == TYPE.HASHTAG) {
+                if (textView instanceof TagEditTextView && ((TagEditTextView) textView).getOnTypingListener() != null
+                        && !isContainSpaceBehindLastLinkable(textView.getText().toString(), getLastHashTag(textView.getText()))
+                        && !lastHashTag.equals(getLastHashTag(textView.getText()))) {
+                    lastHashTag = getLastHashTag(textView.getText());
+                    if(!isChooseDataFromSuggestionList) {
+                        ((TagEditTextView) textView).getOnTypingListener().onTypingHashTag(getLastHashTag(textView.getText()));
+                    }else{
+                        isChooseDataFromSuggestionList = false;
+                }
+            } else {
+                if (textView instanceof TagEditTextView && ((TagEditTextView) textView).getOnTypingListener() != null
+                        && !isContainSpaceBehindLastLinkable(textView.getText().toString(), getLastMention(textView.getText()))
+                        && !lastMention.equals(getLastMention(textView.getText()))) {
+                    lastMention = getLastMention(textView.getText());
+                    if(!isChooseDataFromSuggestionList) {
+                        ((TagEditTextView) textView).getOnTypingListener().onTypingMention(getLastMention(textView.getText()));
+                    }else{
+                        isChooseDataFromSuggestionList = false;
+                    }
+                }
             }
         }
     }
