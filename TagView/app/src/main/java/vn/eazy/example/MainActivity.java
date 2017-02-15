@@ -29,10 +29,10 @@ public class MainActivity extends AppCompatActivity implements ActiveHashTag.OnH
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        tvContent = (TagTextView) findViewById(R.id.tvContent);
-//        String content = "<b>Harry</b> #harry @long #jon <i>Long</i> #john @julian";
-//        tvContent.appendText(content);
-//        tvContent.setHashTagClickListener(this);
+        tvContent = (TagTextView) findViewById(R.id.tvContent);
+        String content = "<b>Harry</b> #harry @long #jon <i>Long</i> #john @julian";
+        tvContent.appendText(content);
+        tvContent.setHashTagClickListener(this);
 
         tvInput = (TagEditTextView) findViewById(R.id.tvInput);
         tvInput.setHashTagClickListener(this);
