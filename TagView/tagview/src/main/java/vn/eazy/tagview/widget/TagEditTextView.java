@@ -4,21 +4,26 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.text.Html;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.view.ViewTreeObserver;
 import android.widget.EditText;
 
 import com.labo.kaji.relativepopupwindow.RelativePopupWindow;
 
 import vn.eazy.tagview.R;
+import vn.eazy.tagview.adapter.SuggestionAdapter;
 import vn.eazy.tagview.core.ActiveHashTag;
+import vn.eazy.tagview.listener.DataItemListener;
+import vn.eazy.tagview.model.BaseData;
 
 /**
  * Created by Harry on 2/10/17.
  */
 
-public class TagEditTextView extends EditText {
+public class TagEditTextView<T extends BaseData> extends EditText {
     private boolean isSupportHtml;
     private boolean isEnableHashTag;
     private boolean isEnableMention;
@@ -26,6 +31,8 @@ public class TagEditTextView extends EditText {
     private int colorMention;
     private OnTypingListener onTypingListener;
     private PopupSuggestionWindow suggestionWindow;
+    private SuggestionAdapter suggestionAdapter;
+    private DataItemListener dataItemListener;
 
     public interface OnTypingListener {
         void onTypingHashTag(String hashTag);
@@ -69,13 +76,42 @@ public class TagEditTextView extends EditText {
         setHighlightColor(Color.TRANSPARENT);
         createActiveHashTag();
 
-        suggestionWindow = new PopupSuggestionWindow(getContext());
+        getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                } else {
+                    getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                }
+                suggestionWindow = new PopupSuggestionWindow(getContext(), getMeasuredWidth());
+                if (suggestionAdapter != null && suggestionWindow.getAdapter() == null) {
+                    suggestionWindow.setAdapter(suggestionAdapter);
+                    suggestionWindow.setOnItemClickListener(dataItemListener);
+                }
+            }
+        });
+    }
+
+
+    public void setOnItemClick(DataItemListener listener) {
+        this.dataItemListener = listener;
+        if (suggestionWindow != null) {
+            suggestionWindow.setOnItemClickListener(listener);
+        }
     }
 
     public void showSuggestionDataPopup() {
-        if (suggestionWindow != null && !suggestionWindow.isShowing()) {
-            suggestionWindow.showAsDropDown(this, RelativePopupWindow.VerticalPosition.BELOW
-                    , RelativePopupWindow.HorizontalPosition.CENTER);
+        if (suggestionWindow != null) {
+            suggestionWindow.dismiss();
+            suggestionWindow = null;
+        }
+
+        suggestionWindow = new PopupSuggestionWindow(getContext(), getMeasuredWidth());
+        suggestionWindow.showAsDropDown(this, RelativePopupWindow.VerticalPosition.BELOW
+                , RelativePopupWindow.HorizontalPosition.CENTER);
+        if (suggestionAdapter != null) {
+            suggestionWindow.setAdapter(suggestionAdapter);
         }
     }
 
@@ -127,6 +163,10 @@ public class TagEditTextView extends EditText {
 
     }
 
+    public PopupSuggestionWindow getSuggestionWindow() {
+        return suggestionWindow;
+    }
+
     public void setHashTagClickListener(ActiveHashTag.OnHashTagClickListener hashTagClickListener) {
         this.hashTagClickListener = hashTagClickListener;
         activeHashTag.removeTextWatcher();
@@ -140,5 +180,13 @@ public class TagEditTextView extends EditText {
 
     public OnTypingListener getOnTypingListener() {
         return onTypingListener;
+    }
+
+    public void setSuggestionAdapter(SuggestionAdapter suggestionAdapter) {
+        if (suggestionWindow != null) {
+            suggestionWindow.setAdapter(suggestionAdapter);
+        } else {
+            this.suggestionAdapter = suggestionAdapter;
+        }
     }
 }

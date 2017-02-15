@@ -60,6 +60,18 @@ public final class ActiveHashTag implements ClickableColorSpan.OnHashTagClickLis
         public void onTextChanged(CharSequence text, int start, int before, int count) {
             if (text.length() > 0) {
                 resetColorizeText(text);
+
+                if (textView instanceof TagEditTextView) {
+                    int sizeText = text.length() - 1;
+                    switch (text.charAt(sizeText)) {
+                        case ' ':
+                        case '@':
+                        case '#':
+                            ((TagEditTextView) textView).dimissPopup();
+                            break;
+                    }
+                }
+
             }
         }
 
