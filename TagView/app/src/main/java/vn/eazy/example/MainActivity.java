@@ -58,11 +58,12 @@ public class MainActivity extends AppCompatActivity implements ActiveHashTag.OnH
     @Override
     public void onTypingHashTag(String hashTag) {
         tvInput.showSuggestionDataPopup();
-        Log.i("SSS",hashTag);
+        Log.i("HashTag",hashTag);
     }
 
     @Override
     public void onTypingMention(String mention) {
         tvInput.showSuggestionDataPopup();
+        Log.i("Mention",mention);
     }
 }

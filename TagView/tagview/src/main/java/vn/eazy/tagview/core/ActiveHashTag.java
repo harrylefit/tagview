@@ -33,8 +33,8 @@ public final class ActiveHashTag implements ClickableColorSpan.OnHashTagClickLis
     private boolean isEnableHashtag;
     private boolean isEnableMention;
 
-    private String lastHashTag;
-    private String lastMention;
+    private String lastHashTag = "";
+    private String lastMention = "";
     private String lastContent = "";
 
     private enum TYPE {
@@ -92,12 +92,8 @@ public final class ActiveHashTag implements ClickableColorSpan.OnHashTagClickLis
         operate(textView, true);
     }
 
-    public void removeTextWatcher(){
+    public void removeTextWatcher() {
         textView.removeTextChangedListener(textWatcher);
-    }
-
-    public TextWatcher getTextWatcher() {
-        return textWatcher;
     }
 
     public void operate(TextView textView, boolean textWatcherEnable) {
@@ -108,7 +104,7 @@ public final class ActiveHashTag implements ClickableColorSpan.OnHashTagClickLis
             if (textWatcherEnable) {
                 textView.addTextChangedListener(textWatcher);
             }
-                textView.setText(textView.getText(), TextView.BufferType.SPANNABLE);
+            textView.setText(textView.getText(), TextView.BufferType.SPANNABLE);
 
             if (null != onHashTagClickListener) {
                 if (textWatcherEnable || null == textView.getMovementMethod()) {
@@ -150,11 +146,30 @@ public final class ActiveHashTag implements ClickableColorSpan.OnHashTagClickLis
     }
 
     public String getLastHashTag(@NonNull CharSequence text) {
-        String[] hashTag = text.toString().replace(" ", "").split("#");
-        if (hashTag.length != 0) {
-            return hashTag[hashTag.length - 1].trim();
+        String[] hashTags = text.toString().replace(" ", "").split("#");
+        if (hashTags.length != 0) {
+            return hashTags[hashTags.length - 1].trim();
         }
         return "";
+    }
+
+
+    public String getLastMention(@NonNull CharSequence text) {
+        int indexOfLastMention = text.toString().lastIndexOf("@");
+        if (indexOfLastMention == -1) {
+            return "";
+        } else {
+            String[] contents = text.toString().substring(indexOfLastMention, text.length()).toString().split(" ");
+            if (contents.length != 0) {
+                return contents[0].trim();
+            }
+            return "";
+        }
+    }
+
+    private boolean isContainSpaceBehindLastLinkable(String text, String linkable) {
+        int indexOf = text.lastIndexOf(linkable);
+        return text.substring(indexOf, text.length()).contains(" ");
     }
 
     private void setColorsHashTags(CharSequence text) {
@@ -188,9 +203,6 @@ public final class ActiveHashTag implements ClickableColorSpan.OnHashTagClickLis
                             nextNotLetter++;
                         } else {
                             setColorEndHashTag(startHash, nextNotLetter, TYPE.MENTION);
-                            if (textView instanceof TagEditTextView && ((TagEditTextView) textView).getOnTypingListener() != null) {
-                                ((TagEditTextView) textView).getOnTypingListener().onTypingMention("ssss");
-                            }
                         }
                     }
                     break;
@@ -253,12 +265,18 @@ public final class ActiveHashTag implements ClickableColorSpan.OnHashTagClickLis
 
     private void callbackContent(TYPE type) {
         if (type == TYPE.HASHTAG) {
-            if (textView instanceof TagEditTextView && ((TagEditTextView) textView).getOnTypingListener() != null) {
+            if (textView instanceof TagEditTextView && ((TagEditTextView) textView).getOnTypingListener() != null
+                    && !isContainSpaceBehindLastLinkable(textView.getText().toString(), getLastHashTag(textView.getText()))
+                    && !lastHashTag.equals(getLastHashTag(textView.getText()))) {
+                lastHashTag = getLastHashTag(textView.getText());
                 ((TagEditTextView) textView).getOnTypingListener().onTypingHashTag(getLastHashTag(textView.getText()));
             }
         } else {
-            if (textView instanceof TagEditTextView && ((TagEditTextView) textView).getOnTypingListener() != null) {
-                ((TagEditTextView) textView).getOnTypingListener().onTypingMention(getLastHashTag(textView.getText()));
+            if (textView instanceof TagEditTextView && ((TagEditTextView) textView).getOnTypingListener() != null
+                    && !isContainSpaceBehindLastLinkable(textView.getText().toString(), getLastMention(textView.getText()))
+                    && !lastMention.equals(getLastMention(textView.getText()))) {
+                lastMention = getLastMention(textView.getText());
+                ((TagEditTextView) textView).getOnTypingListener().onTypingMention(getLastMention(textView.getText()));
             }
         }
     }
