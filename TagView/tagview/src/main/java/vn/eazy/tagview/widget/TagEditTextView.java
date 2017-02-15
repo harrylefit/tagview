@@ -9,6 +9,8 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.widget.EditText;
 
+import com.labo.kaji.relativepopupwindow.RelativePopupWindow;
+
 import vn.eazy.tagview.R;
 import vn.eazy.tagview.core.ActiveHashTag;
 
@@ -18,10 +20,18 @@ import vn.eazy.tagview.core.ActiveHashTag;
 
 public class TagEditTextView extends EditText {
     private boolean isSupportHtml;
-    private boolean isEnableHashtag;
+    private boolean isEnableHashTag;
     private boolean isEnableMention;
     private int colorHashtag;
     private int colorMention;
+    private OnTypingListener onTypingListener;
+    private PopupSuggestionWindow suggestionWindow;
+
+    public interface OnTypingListener {
+        void onTypingHashTag(String hashTag);
+
+        void onTypingMention(String mention);
+    }
 
     private ActiveHashTag activeHashTag;
 
@@ -46,7 +56,7 @@ public class TagEditTextView extends EditText {
         if (attrs != null) {
             TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.TagTextView);
             isSupportHtml = typedArray.getBoolean(R.styleable.TagTextView_ttv_support_html, false);
-            isEnableHashtag = typedArray.getBoolean(R.styleable.TagTextView_ttv_enable_hashtag, false);
+            isEnableHashTag = typedArray.getBoolean(R.styleable.TagTextView_ttv_enable_hashtag, false);
             isEnableMention = typedArray.getBoolean(R.styleable.TagTextView_ttv_enable_mention, false);
             colorHashtag = typedArray.getColor(R.styleable.TagTextView_ttv_color_hashtag, Color.BLACK);
             colorMention = typedArray.getColor(R.styleable.TagTextView_ttv_color_mention, Color.BLACK);
@@ -58,10 +68,25 @@ public class TagEditTextView extends EditText {
         }
         setHighlightColor(Color.TRANSPARENT);
         createActiveHashTag();
+
+        suggestionWindow = new PopupSuggestionWindow(getContext());
+    }
+
+    public void showSuggestionDataPopup() {
+        if (suggestionWindow != null && !suggestionWindow.isShowing()) {
+            suggestionWindow.showAsDropDown(this, RelativePopupWindow.VerticalPosition.BELOW
+                    , RelativePopupWindow.HorizontalPosition.CENTER);
+        }
+    }
+
+    public void dimissPopup() {
+        if (suggestionWindow != null) {
+            suggestionWindow.dismiss();
+        }
     }
 
     private final void createActiveHashTag() {
-        activeHashTag = ActiveHashTag.Factory.create(colorHashtag,colorMention, isEnableHashtag, isEnableMention, hashTagClickListener);
+        activeHashTag = ActiveHashTag.Factory.create(colorHashtag, colorMention, isEnableHashTag, isEnableMention, hashTagClickListener);
         activeHashTag.operate(this);
     }
 
@@ -73,19 +98,13 @@ public class TagEditTextView extends EditText {
         }
     }
 
-    @Deprecated
-    @Override
-    public void setText(CharSequence text, BufferType type) {
-        super.setText(text, type);
-    }
-
     public void setSupportHtml(boolean isSupportHtml) {
         this.isSupportHtml = isSupportHtml;
         invalidate();
     }
 
     public void enableHashtag(boolean isEnableHashtag) {
-        this.isEnableHashtag = isEnableHashtag;
+        this.isEnableHashTag = isEnableHashtag;
     }
 
     public void enableMention(boolean isEnableMention) {
@@ -96,8 +115,8 @@ public class TagEditTextView extends EditText {
         return isSupportHtml;
     }
 
-    public boolean isEnableHashtag() {
-        return isEnableHashtag;
+    public boolean isEnableHashTag() {
+        return isEnableHashTag;
     }
 
     public boolean isEnableMention() {
@@ -110,6 +129,16 @@ public class TagEditTextView extends EditText {
 
     public void setHashTagClickListener(ActiveHashTag.OnHashTagClickListener hashTagClickListener) {
         this.hashTagClickListener = hashTagClickListener;
+        activeHashTag.removeTextWatcher();
         createActiveHashTag();
+    }
+
+    public void setOnTypingListener(OnTypingListener onTypingListener) {
+        this.onTypingListener = onTypingListener;
+    }
+
+
+    public OnTypingListener getOnTypingListener() {
+        return onTypingListener;
     }
 }

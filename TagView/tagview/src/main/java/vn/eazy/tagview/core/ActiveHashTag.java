@@ -1,5 +1,6 @@
 package vn.eazy.tagview.core;
 
+import android.support.annotation.NonNull;
 import android.text.Editable;
 import android.text.Spannable;
 import android.text.TextWatcher;
@@ -32,7 +33,9 @@ public final class ActiveHashTag implements ClickableColorSpan.OnHashTagClickLis
     private boolean isEnableHashtag;
     private boolean isEnableMention;
 
-    private String currContent = "";
+    private String lastHashTag;
+    private String lastMention;
+    private String lastContent = "";
 
     private enum TYPE {
         HASHTAG, MENTION;
@@ -57,14 +60,18 @@ public final class ActiveHashTag implements ClickableColorSpan.OnHashTagClickLis
         public void onTextChanged(CharSequence text, int start, int before, int count) {
             if (text.length() > 0) {
                 resetColorizeText(text);
-                currContent = text.toString();
             }
         }
 
         @Override
-        public void afterTextChanged(Editable s) {
+        public synchronized void afterTextChanged(Editable s) {
         }
     };
+
+    public void setOnHashTagClickListener(OnHashTagClickListener onHashTagClickListener) {
+        this.onHashTagClickListener = onHashTagClickListener;
+        setHashTagLisenter(this.onHashTagClickListener);
+    }
 
     private ActiveHashTag(int colorHashtag, int colorMention, OnHashTagClickListener listener, boolean isEnableHashtag, boolean isEnableMention, char... additionalHashTagCharacters) {
         this.colorHashtag = colorHashtag;
@@ -85,6 +92,14 @@ public final class ActiveHashTag implements ClickableColorSpan.OnHashTagClickLis
         operate(textView, true);
     }
 
+    public void removeTextWatcher(){
+        textView.removeTextChangedListener(textWatcher);
+    }
+
+    public TextWatcher getTextWatcher() {
+        return textWatcher;
+    }
+
     public void operate(TextView textView, boolean textWatcherEnable) {
 
         if (null == this.textView) {
@@ -93,8 +108,7 @@ public final class ActiveHashTag implements ClickableColorSpan.OnHashTagClickLis
             if (textWatcherEnable) {
                 textView.addTextChangedListener(textWatcher);
             }
-
-            textView.setText(textView.getText(), TextView.BufferType.SPANNABLE);
+                textView.setText(textView.getText(), TextView.BufferType.SPANNABLE);
 
             if (null != onHashTagClickListener) {
                 if (textWatcherEnable || null == textView.getMovementMethod()) {
@@ -106,8 +120,18 @@ public final class ActiveHashTag implements ClickableColorSpan.OnHashTagClickLis
             }
 
             setColorsHashTags(textView.getText());
+
         } else {
             throw new RuntimeException("TextView is not null.");
+        }
+    }
+
+
+    public void setHashTagLisenter(OnHashTagClickListener hashTagLisenter) {
+        if (null != hashTagLisenter) {
+            if (null == textView.getMovementMethod()) {
+                textView.setMovementMethod(LinkMovementMethod.getInstance());
+            }
         }
     }
 
@@ -125,10 +149,19 @@ public final class ActiveHashTag implements ClickableColorSpan.OnHashTagClickLis
         setColorsHashTags(text);
     }
 
+    public String getLastHashTag(@NonNull CharSequence text) {
+        String[] hashTag = text.toString().replace(" ", "").split("#");
+        if (hashTag.length != 0) {
+            return hashTag[hashTag.length - 1].trim();
+        }
+        return "";
+    }
+
     private void setColorsHashTags(CharSequence text) {
         int startHash;
 
         int index = 0;
+        boolean isRunListenter = false;
         while (index < text.length() - 1) {
             char sign = text.charAt(index);
             int nextNotLetter = index + 1;
@@ -155,6 +188,9 @@ public final class ActiveHashTag implements ClickableColorSpan.OnHashTagClickLis
                             nextNotLetter++;
                         } else {
                             setColorEndHashTag(startHash, nextNotLetter, TYPE.MENTION);
+                            if (textView instanceof TagEditTextView && ((TagEditTextView) textView).getOnTypingListener() != null) {
+                                ((TagEditTextView) textView).getOnTypingListener().onTypingMention("ssss");
+                            }
                         }
                     }
                     break;
@@ -204,12 +240,26 @@ public final class ActiveHashTag implements ClickableColorSpan.OnHashTagClickLis
                 span = new ForegroundColorSpan(type == TYPE.HASHTAG ? colorHashtag : colorMention);
             }
 
+            callbackContent(type);
+
             if (-1 < startIndex && -1 < nextNotLetter && startIndex < nextNotLetter) {
                 s.setSpan(span, startIndex, nextNotLetter, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             }
 
         } catch (Exception e) {
             Log.e(TAG, " setColorEndHashTag e " + e.getMessage() + " startIndex:: " + startIndex + " nextNotLetter:: " + nextNotLetter);
+        }
+    }
+
+    private void callbackContent(TYPE type) {
+        if (type == TYPE.HASHTAG) {
+            if (textView instanceof TagEditTextView && ((TagEditTextView) textView).getOnTypingListener() != null) {
+                ((TagEditTextView) textView).getOnTypingListener().onTypingHashTag(getLastHashTag(textView.getText()));
+            }
+        } else {
+            if (textView instanceof TagEditTextView && ((TagEditTextView) textView).getOnTypingListener() != null) {
+                ((TagEditTextView) textView).getOnTypingListener().onTypingMention(getLastHashTag(textView.getText()));
+            }
         }
     }
 
