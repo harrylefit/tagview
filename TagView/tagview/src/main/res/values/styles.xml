@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TagTextView">
+        <attr name="ttv_font" format="string" />
+        <attr name="ttv_support_html" format="boolean" />
+        <attr name="ttv_color_hashtag" format="color|reference" />
+        <attr name="ttv_color_mention" format="color|reference" />
+        <attr name="ttv_enable_hashtag" format="boolean" />
+        <attr name="ttv_enable_mention" format="boolean" />
+    </declare-styleable>
+</resources>

@@ -1,0 +1,5 @@
+
+zsquid:S1450"\Remove the "activeHashTag" field and declare it as a local variable in the relevant methods.(®ùÄ•8ûÕ­º¢+
+Ÿsquid:S1186k"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ööêê8õ£š¸¢+
+Rsquid:S1133N"5Do not forget to remove this deprecated code someday.(¢ÀêF8¸¬À¢+
+Vsquid:MissingDeprecatedCheckN"(Add the missing @deprecated Javadoc tag.(¢ÀêF8¸¬À¢+
