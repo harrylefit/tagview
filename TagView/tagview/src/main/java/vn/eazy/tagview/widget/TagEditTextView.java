@@ -174,10 +174,9 @@ public class TagEditTextView<T extends BaseData> extends EditText {
     }
 
     public void setSuggestionAdapter(SuggestionAdapter suggestionAdapter) {
+        this.suggestionAdapter = suggestionAdapter;
         if (suggestionWindow != null) {
             suggestionWindow.setAdapter(suggestionAdapter);
-        } else {
-            this.suggestionAdapter = suggestionAdapter;
         }
     }
 
