@@ -137,11 +137,11 @@ public final class ActiveHashTag implements ClickableColorSpan.OnHashTagClickLis
             int indexLastHashTag = textView.getText().toString().lastIndexOf(getLastHashTag(textView.getText()));
             if (indexLastMention == textView.length() || indexLastHashTag > indexLastMention) {
                 textView.setText(textView.getText().toString().replace("#" + getLastHashTag(textView.getText())
-                        , "#" + suggestionItemEvent.getData().getItemTitle()));
+                        , "#" + suggestionItemEvent.getData().getTag()));
 
             } else {
                 textView.setText(textView.getText().toString().replace("@" + getLastMention(textView.getText())
-                        , "@" + suggestionItemEvent.getData().getItemTitle()));
+                        , "@" + suggestionItemEvent.getData().getTag()));
             }
         }
         textView.requestFocus();

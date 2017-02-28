@@ -8,4 +8,6 @@ public interface BaseData {
     String getItemTitle();
 
     String getItemAvatar();
+
+    String getTag();
 }

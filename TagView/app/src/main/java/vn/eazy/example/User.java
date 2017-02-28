@@ -51,4 +51,9 @@ public class User implements BaseData {
     public String getItemAvatar() {
         return getAvatar();
     }
+
+    @Override
+    public String getTag() {
+        return "harryle.fit";
+    }
 }
