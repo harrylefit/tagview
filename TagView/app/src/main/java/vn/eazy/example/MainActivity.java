@@ -49,6 +49,10 @@ public class MainActivity extends AppCompatActivity implements ActiveHashTag.OnH
         simpleDatas.add(new SimpleData("Ray", "SS"));
         simpleDatas.add(new SimpleData("Liam", "SS"));
         simpleDatas.add(new SimpleData("Louis", "SS"));
+        simpleDatas.add(new SimpleData("Ben", "SS"));
+        simpleDatas.add(new SimpleData("Ray", "SS"));
+        simpleDatas.add(new SimpleData("Liam", "SS"));
+        simpleDatas.add(new SimpleData("Louis", "SS"));
 
         eazySuggestionAdapter.addAll(simpleDatas);
 

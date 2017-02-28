@@ -8,14 +8,15 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/layoutData"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="150dp"
         android:orientation="vertical">
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rvData"
             android:scrollbarStyle="insideInset"
             android:layout_width="match_parent"
-            android:layout_height="150dp" />
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
 </android.support.v7.widget.CardView>

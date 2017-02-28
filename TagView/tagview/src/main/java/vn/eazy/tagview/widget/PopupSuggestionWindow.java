@@ -8,6 +8,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 
 import com.labo.kaji.relativepopupwindow.RelativePopupWindow;
 
@@ -27,6 +29,7 @@ public class PopupSuggestionWindow extends RelativePopupWindow {
     private RecyclerView rvData;
     private SuggestionAdapter adapter;
     private LinearLayoutManager llm;
+    private LinearLayout layoutData;
 
     public PopupSuggestionWindow(Context context, int widthPopup) {
         super(context);
@@ -37,14 +40,20 @@ public class PopupSuggestionWindow extends RelativePopupWindow {
         setOutsideTouchable(true);
         setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
+        setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);
+
+        rvData = (RecyclerView) getContentView().findViewById(R.id.rvData);
+        layoutData = (LinearLayout) getContentView().findViewById(R.id.layoutData);
+        llm = new LinearLayoutManager(context);
+        rvData.setLayoutManager(llm);
+
+        setInputMethodMode(INPUT_METHOD_NEEDED);
         // Disable default animation for circular reveal
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             setAnimationStyle(0);
         }
 
-        rvData = (RecyclerView) getContentView().findViewById(R.id.rvData);
-        llm = new LinearLayoutManager(context);
-        rvData.setLayoutManager(llm);
+        layoutData.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
 
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
@@ -52,11 +61,11 @@ public class PopupSuggestionWindow extends RelativePopupWindow {
     }
 
     @Subscribe
-    public void onEvent(SuggestionItemEvent suggestionItemEvent){
+    public void onEvent(SuggestionItemEvent suggestionItemEvent) {
         dismiss();
     }
 
-    public void release(){
+    public void release() {
         EventBus.getDefault().unregister(this);
     }
 
