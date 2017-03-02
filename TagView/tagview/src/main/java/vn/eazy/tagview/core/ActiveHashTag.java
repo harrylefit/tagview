@@ -131,7 +131,7 @@ public final class ActiveHashTag implements ClickableColorSpan.OnHashTagClickLis
 
     @Subscribe
     public void onEvent(SuggestionItemEvent suggestionItemEvent) {
-        if(textView instanceof TagEditTextView) {
+        if (textView instanceof TagEditTextView) {
             isChooseDataFromSuggestionList = true;
             int indexLastMention = textView.getText().toString().lastIndexOf(getLastMention(textView.getText()));
             int indexLastHashTag = textView.getText().toString().lastIndexOf(getLastHashTag(textView.getText()));
@@ -145,7 +145,7 @@ public final class ActiveHashTag implements ClickableColorSpan.OnHashTagClickLis
             }
         }
         textView.requestFocus();
-        ((TagEditTextView)textView).setSelection(textView.getText().length());
+        ((TagEditTextView) textView).setSelection(textView.getText().length());
     }
 
     public void operate(TextView textView) {
@@ -317,7 +317,6 @@ public final class ActiveHashTag implements ClickableColorSpan.OnHashTagClickLis
             } else {
                 span = new ForegroundColorSpan(type == TYPE.HASHTAG ? colorHashtag : colorMention);
             }
-
             callbackContent(type);
 
             if (-1 < startIndex && -1 < nextNotLetter && startIndex < nextNotLetter) {
@@ -330,26 +329,26 @@ public final class ActiveHashTag implements ClickableColorSpan.OnHashTagClickLis
     }
 
     private void callbackContent(TYPE type) {
-            if (type == TYPE.HASHTAG) {
-                if (textView instanceof TagEditTextView && ((TagEditTextView) textView).getOnTypingListener() != null
-                        && !isContainSpaceBehindLastLinkable(textView.getText().toString(), getLastHashTag(textView.getText()))
-                        && !lastHashTag.equals(getLastHashTag(textView.getText()))) {
-                    lastHashTag = getLastHashTag(textView.getText());
-                    if(!isChooseDataFromSuggestionList) {
-                        ((TagEditTextView) textView).getOnTypingListener().onTypingHashTag(getLastHashTag(textView.getText()));
-                    }else{
-                        isChooseDataFromSuggestionList = false;
+        if (type == TYPE.HASHTAG) {
+            if (textView instanceof TagEditTextView && ((TagEditTextView) textView).getOnTypingListener() != null
+                    && !isContainSpaceBehindLastLinkable(textView.getText().toString(), getLastHashTag(textView.getText()))
+                    && !lastHashTag.equals(getLastHashTag(textView.getText()))) {
+                lastHashTag = getLastHashTag(textView.getText());
+                if (!isChooseDataFromSuggestionList) {
+                    ((TagEditTextView) textView).getOnTypingListener().onTypingHashTag(getLastHashTag(textView.getText()));
+                } else {
+                    isChooseDataFromSuggestionList = false;
                 }
-            } else {
-                if (textView instanceof TagEditTextView && ((TagEditTextView) textView).getOnTypingListener() != null
-                        && !isContainSpaceBehindLastLinkable(textView.getText().toString(), getLastMention(textView.getText()))
-                        && !lastMention.equals(getLastMention(textView.getText()))) {
-                    lastMention = getLastMention(textView.getText());
-                    if(!isChooseDataFromSuggestionList) {
-                        ((TagEditTextView) textView).getOnTypingListener().onTypingMention(getLastMention(textView.getText()));
-                    }else{
-                        isChooseDataFromSuggestionList = false;
-                    }
+            }
+        } else {
+            if (textView instanceof TagEditTextView && ((TagEditTextView) textView).getOnTypingListener() != null
+                    && !isContainSpaceBehindLastLinkable(textView.getText().toString(), getLastMention(textView.getText()))
+                    && !lastMention.equals(getLastMention(textView.getText()))) {
+                lastMention = getLastMention(textView.getText());
+                if (!isChooseDataFromSuggestionList) {
+                    ((TagEditTextView) textView).getOnTypingListener().onTypingMention(getLastMention(textView.getText()));
+                } else {
+                    isChooseDataFromSuggestionList = false;
                 }
             }
         }
