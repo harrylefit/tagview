@@ -333,8 +333,7 @@ public final class ActiveHashTag implements ClickableColorSpan.OnHashTagClickLis
     private void callbackContent(TYPE type) {
         if (type == TYPE.HASHTAG) {
             if (textView instanceof TagEditTextView && ((TagEditTextView) textView).getOnTypingListener() != null
-                    && !isContainSpaceBehindLastLinkable(textView.getText().toString(), getLastHashTag(textView.getText()))
-                    && !lastHashTag.equals(getLastHashTag(textView.getText()))) {
+                    && !isContainSpaceBehindLastLinkable(textView.getText().toString(), getLastHashTag(textView.getText()))) {
                 lastHashTag = getLastHashTag(textView.getText());
                 if (!isChooseDataFromSuggestionList) {
                     ((TagEditTextView) textView).getOnTypingListener().onTypingHashTag(getLastHashTag(textView.getText()));
@@ -344,8 +343,7 @@ public final class ActiveHashTag implements ClickableColorSpan.OnHashTagClickLis
             }
         } else {
             if (textView instanceof TagEditTextView && ((TagEditTextView) textView).getOnTypingListener() != null
-                    && !isContainSpaceBehindLastLinkable(textView.getText().toString(), getLastMention(textView.getText()))
-                    && !lastMention.equals(getLastMention(textView.getText()))) {
+                    && !isContainSpaceBehindLastLinkable(textView.getText().toString(), getLastMention(textView.getText()))a) {
                 lastMention = getLastMention(textView.getText());
                 if (!isChooseDataFromSuggestionList) {
                     ((TagEditTextView) textView).getOnTypingListener().onTypingMention(getLastMention(textView.getText()));
