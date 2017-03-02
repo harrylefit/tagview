@@ -133,8 +133,10 @@ public final class ActiveHashTag implements ClickableColorSpan.OnHashTagClickLis
     public void onEvent(SuggestionItemEvent suggestionItemEvent) {
         if (textView instanceof TagEditTextView) {
             isChooseDataFromSuggestionList = true;
-            int indexLastMention = textView.getText().toString().lastIndexOf(getLastMention(textView.getText()));
-            int indexLastHashTag = textView.getText().toString().lastIndexOf(getLastHashTag(textView.getText()));
+            int indexLastMention = textView.getText().toString().contains("@") ?
+                    textView.getText().toString().lastIndexOf(getLastMention(textView.getText())) : 0;
+            int indexLastHashTag = textView.getText().toString().contains("#") ?
+                    textView.getText().toString().lastIndexOf(getLastHashTag(textView.getText())) : 0;
             if (indexLastMention == textView.length() || indexLastHashTag > indexLastMention) {
                 textView.setText(textView.getText().toString().replace("#" + getLastHashTag(textView.getText())
                         , "#" + suggestionItemEvent.getData().getTag()));
