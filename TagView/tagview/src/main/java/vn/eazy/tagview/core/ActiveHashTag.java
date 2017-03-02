@@ -343,7 +343,7 @@ public final class ActiveHashTag implements ClickableColorSpan.OnHashTagClickLis
             }
         } else {
             if (textView instanceof TagEditTextView && ((TagEditTextView) textView).getOnTypingListener() != null
-                    && !isContainSpaceBehindLastLinkable(textView.getText().toString(), getLastMention(textView.getText()))a) {
+                    && !isContainSpaceBehindLastLinkable(textView.getText().toString(), getLastMention(textView.getText()))) {
                 lastMention = getLastMention(textView.getText());
                 if (!isChooseDataFromSuggestionList) {
                     ((TagEditTextView) textView).getOnTypingListener().onTypingMention(getLastMention(textView.getText()));
