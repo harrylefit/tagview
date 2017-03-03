@@ -80,6 +80,11 @@ public class MainActivity extends AppCompatActivity implements ActiveHashTag.OnH
     }
 
     @Override
+    public void onMentionClicked(String mention) {
+        Toast.makeText(getApplicationContext(), "Mention: " + mention, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
     public void onTypingHashTag(String hashTag) {
         tvInput.showSuggestionDataPopup();
         Log.i("HashTag", hashTag);

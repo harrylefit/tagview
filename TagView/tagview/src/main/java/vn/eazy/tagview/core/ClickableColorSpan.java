@@ -14,11 +14,15 @@ public class ClickableColorSpan extends ClickableSpan {
 
     public interface OnHashTagClickListener {
         void onHashTagClicked(String hashTag);
+
+        void onMentionClicked(String mention);
     }
 
+    private boolean isHashTag;
     private final int color;
 
-    public ClickableColorSpan(@ColorInt int color, OnHashTagClickListener listener) {
+    public ClickableColorSpan(@ColorInt int color, boolean isHashTag, OnHashTagClickListener listener) {
+        this.isHashTag = isHashTag;
         this.color = color;
         onHashTagClickListener = listener;
 
@@ -41,7 +45,11 @@ public class ClickableColorSpan extends ClickableSpan {
         int start = spanned.getSpanStart(this);
         int end = spanned.getSpanEnd(this);
 
-        onHashTagClickListener.onHashTagClicked(text.subSequence(start + 1/*skip "#" sign*/, end).toString());
+        if(isHashTag) {
+            onHashTagClickListener.onHashTagClicked(text.subSequence(start + 1/*skip "#" sign*/, end).toString());
+        }else{
+            onHashTagClickListener.onMentionClicked(text.subSequence(start + 1/*skip "#" sign*/, end).toString());
+        }
 
     }
 }

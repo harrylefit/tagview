@@ -28,6 +28,7 @@ public final class ActiveHashTag implements ClickableColorSpan.OnHashTagClickLis
 
     public interface OnHashTagClickListener {
         void onHashTagClicked(String hashTag);
+        void onMentionClicked(String mention);
     }
 
     private final List<Character> hashTagCharsList;
@@ -315,7 +316,7 @@ public final class ActiveHashTag implements ClickableColorSpan.OnHashTagClickLis
             CharacterStyle span;
 
             if (onHashTagClickListener != null) {
-                span = new ClickableColorSpan(type == TYPE.HASHTAG ? colorHashtag : colorMention, this);
+                span = new ClickableColorSpan(type == TYPE.HASHTAG ? colorHashtag : colorMention, type == TYPE.HASHTAG, this);
             } else {
                 span = new ForegroundColorSpan(type == TYPE.HASHTAG ? colorHashtag : colorMention);
             }
@@ -380,5 +381,10 @@ public final class ActiveHashTag implements ClickableColorSpan.OnHashTagClickLis
     @Override
     public void onHashTagClicked(String hashTag) {
         onHashTagClickListener.onHashTagClicked(hashTag);
+    }
+
+    @Override
+    public void onMentionClicked(String mention) {
+        onHashTagClickListener.onMentionClicked(mention);
     }
 }
