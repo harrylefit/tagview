@@ -28,6 +28,7 @@ public final class ActiveHashTag implements ClickableColorSpan.OnHashTagClickLis
 
     public interface OnHashTagClickListener {
         void onHashTagClicked(String hashTag);
+
         void onMentionClicked(String mention);
     }
 
@@ -295,7 +296,7 @@ public final class ActiveHashTag implements ClickableColorSpan.OnHashTagClickLis
                 }
             }
 
-            boolean isValidSign = Character.isLetterOrDigit(sign) || hashTagCharsList.contains(sign);
+            boolean isValidSign = Character.isLetterOrDigit(sign) || hashTagCharsList.contains(sign) || sign == '-' || sign == '.';
             if (!isValidSign) {
                 nextNotLetter = index;
                 break;
