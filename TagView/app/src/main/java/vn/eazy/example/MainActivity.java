@@ -21,7 +21,7 @@ import vn.eazy.tagview.widget.TagTextView;
 public class MainActivity extends AppCompatActivity implements ActiveHashTag.OnHashTagClickListener, TagEditTextView.OnTypingListener {
     private TagTextView tvContent;
     private TagEditTextView<User> tvInput;
-
+    private TagEditTextView<User> tvInput2;
     private List<User> users;
     private EazySuggestionAdapter eazySuggestionAdapter;
 
@@ -31,15 +31,21 @@ public class MainActivity extends AppCompatActivity implements ActiveHashTag.OnH
         setContentView(R.layout.activity_main);
         tvContent = (TagTextView) findViewById(R.id.tvContent);
         String content = "<b>Harry</b> #harry-aa @long #jon <i>Long</i> #john @julian";
-//        tvContent.appendText(content);
+        tvContent.appendText(content);
         tvContent.setHashTagClickListener(this);
 
         tvInput = (TagEditTextView) findViewById(R.id.tvInput);
         tvInput.setHashTagClickListener(this);
         tvInput.setOnTypingListener(this);
 
+        tvInput2 = (TagEditTextView) findViewById(R.id.tvInput2);
+        tvInput2.setHashTagClickListener(this);
+        tvInput2.setOnTypingListener(this);
+
         eazySuggestionAdapter = new EazySuggestionAdapter(getApplicationContext());
         tvInput.setSuggestionAdapter(eazySuggestionAdapter);
+
+        tvInput2.setSuggestionAdapter(eazySuggestionAdapter);
 
         List<SimpleData> simpleDatas = new ArrayList<>();
         simpleDatas.add(new SimpleData("Harry", "SS"));
@@ -70,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements ActiveHashTag.OnH
     @Override
     protected void onDestroy() {
         tvInput.release();
+        tvInput2.release();
         super.onDestroy();
         EventBus.getDefault().unregister(this);
     }
@@ -92,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements ActiveHashTag.OnH
 
     @Override
     public void onTypingMention(String mention) {
-        tvInput.showSuggestionDataPopup();
+        tvInput2.showSuggestionDataPopup(true);
         Log.i("Mention", mention);
     }
 }
