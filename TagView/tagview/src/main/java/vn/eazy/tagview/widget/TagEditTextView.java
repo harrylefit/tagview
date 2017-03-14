@@ -41,7 +41,6 @@ public class TagEditTextView<T extends BaseData> extends AppCompatEditText imple
     private boolean isTopAnchor;
     private Handler handler;
     private FrameLayout.LayoutParams lpPopup;
-
     public interface OnTypingListener {
         void onTypingHashTag(String hashTag);
 
@@ -141,7 +140,6 @@ public class TagEditTextView<T extends BaseData> extends AppCompatEditText imple
         } else {
             lpPopup.height = sizeCurrentOfPopup;
             suggestionWindow.getLayoutData().setLayoutParams(lpPopup);
-//            suggestionWindow.getLayoutData().requestLayout();
             return sizeCurrentOfPopup;
         }
     }
@@ -165,10 +163,12 @@ public class TagEditTextView<T extends BaseData> extends AppCompatEditText imple
                 if (suggestionWindow != null) {
                     suggestionWindow.dismiss();
                 }
-                if (handler == null) {
-                    handler = new Handler();
+                if(!TextUtils.isEmpty(getText().toString())) {
+                    if (handler == null) {
+                        handler = new Handler();
+                    }
+                    handler.postDelayed(this, 300);
                 }
-                handler.postDelayed(this, 300);
 
             }
         }
