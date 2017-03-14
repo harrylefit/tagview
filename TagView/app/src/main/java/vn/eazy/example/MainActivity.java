@@ -1,7 +1,9 @@
 package vn.eazy.example;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -42,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements ActiveHashTag.OnH
         tvInput2.setHashTagClickListener(this);
         tvInput2.setOnTypingListener(this);
 
-        eazySuggestionAdapter = new EazySuggestionAdapter(getApplicationContext());
+        eazySuggestionAdapter = new EazySuggestionAdapter(getApplicationContext(),dpToPx(60,getApplicationContext()));
         tvInput.setSuggestionAdapter(eazySuggestionAdapter);
 
         tvInput2.setSuggestionAdapter(eazySuggestionAdapter);
@@ -66,6 +68,12 @@ public class MainActivity extends AppCompatActivity implements ActiveHashTag.OnH
             EventBus.getDefault().register(this);
         }
     }
+
+    private int dpToPx(int dp, Context context) {
+        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+        return Math.round(dp * (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
+    }
+
 
     @Subscribe
     public void onEvent(SuggestionItemEvent suggestionItemEvent) {

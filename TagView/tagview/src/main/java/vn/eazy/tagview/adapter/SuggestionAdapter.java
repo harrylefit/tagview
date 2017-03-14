@@ -20,14 +20,16 @@ import vn.eazy.tagview.model.BaseData;
 public abstract class SuggestionAdapter<T extends BaseData, V extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<V> implements View.OnClickListener {
     private Context context;
     private List<T> list;
+    private int heightOfItem = 0;
 
     public interface CallbackDataListener {
         void callbackData(BaseData data);
     }
 
-    public SuggestionAdapter(Context context) {
+    public SuggestionAdapter(Context context, int heightOfItem) {
         this.context = context;
         list = new ArrayList<>();
+        this.heightOfItem = heightOfItem;
     }
 
     protected abstract V getLayoutViewHolder(ViewGroup parent, int viewType);
@@ -75,6 +77,10 @@ public abstract class SuggestionAdapter<T extends BaseData, V extends RecyclerVi
     @Override
     public V onCreateViewHolder(ViewGroup parent, int viewType) {
         return getLayoutViewHolder(parent, viewType);
+    }
+
+    public int getHeightOfItem() {
+        return heightOfItem;
     }
 
     @Override

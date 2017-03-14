@@ -13,7 +13,9 @@ import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.FrameLayout;
 
 import com.labo.kaji.relativepopupwindow.RelativePopupWindow;
 
@@ -26,7 +28,7 @@ import vn.eazy.tagview.model.BaseData;
  * Created by Harry on 2/10/17.
  */
 
-public class TagEditTextView<T extends BaseData> extends AppCompatEditText implements Runnable {
+public class TagEditTextView<T extends BaseData> extends AppCompatEditText implements Runnable, ViewTreeObserver.OnGlobalLayoutListener {
     private boolean isSupportHtml;
     private boolean isEnableHashTag;
     private boolean isEnableMention;
@@ -38,7 +40,7 @@ public class TagEditTextView<T extends BaseData> extends AppCompatEditText imple
     private int[] posWindow;
     private boolean isTopAnchor;
     private Handler handler;
-
+    private FrameLayout.LayoutParams lpPopup;
 
     public interface OnTypingListener {
         void onTypingHashTag(String hashTag);
@@ -109,22 +111,50 @@ public class TagEditTextView<T extends BaseData> extends AppCompatEditText imple
             suggestionWindow.dismiss();
             suggestionWindow = null;
         }
-
         suggestionWindow = new PopupSuggestionWindow(getContext(), getMeasuredWidth());
+
+        if (suggestionAdapter != null) {
+            suggestionWindow.setAdapter(suggestionAdapter);
+        }
+
         if (isTopAnchor) {
             if (posWindow == null) {
                 posWindow = new int[2];
             }
             getLocationOnScreen(posWindow);
-            suggestionWindow.showAtLocation(TagEditTextView.this, Gravity.TOP, 0, posWindow[1] - dpToPx(150, getContext()));
+            suggestionWindow.showAtLocation(TagEditTextView.this, Gravity.TOP, 0, posWindow[1] - calcHeightOfPopup());
         } else {
             suggestionWindow.showAsDropDown(this, RelativePopupWindow.VerticalPosition.BELOW
                     , RelativePopupWindow.HorizontalPosition.CENTER);
         }
+    }
 
-        if (suggestionAdapter != null) {
-            suggestionWindow.setAdapter(suggestionAdapter);
+    private int calcHeightOfPopup() {
+        int sizeOfAllItems = suggestionAdapter.getHeightOfItem() * suggestionAdapter.getItemCount();
+        int sizeCurrentOfPopup = dpToPx(150, getContext());
+        if (lpPopup == null) {
+            lpPopup = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         }
+        if (sizeOfAllItems < sizeCurrentOfPopup) {
+            suggestionWindow.getLayoutData().setLayoutParams(lpPopup);
+            return sizeOfAllItems;
+        } else {
+            lpPopup.height = sizeCurrentOfPopup;
+            suggestionWindow.getLayoutData().setLayoutParams(lpPopup);
+//            suggestionWindow.getLayoutData().requestLayout();
+            return sizeCurrentOfPopup;
+        }
+    }
+
+    @Override
+    public void onGlobalLayout() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            suggestionWindow.getContentView().getViewTreeObserver().removeOnGlobalLayoutListener(this);
+        } else {
+            suggestionWindow.getContentView().getViewTreeObserver().removeGlobalOnLayoutListener(this);
+        }
+
+
     }
 
     @Override
@@ -132,7 +162,7 @@ public class TagEditTextView<T extends BaseData> extends AppCompatEditText imple
         if (event.getKeyCode() == KeyEvent.KEYCODE_BACK &&
                 event.getAction() == KeyEvent.ACTION_UP) {
             if (isTopAnchor) {
-                if(suggestionWindow != null){
+                if (suggestionWindow != null) {
                     suggestionWindow.dismiss();
                 }
                 if (handler == null) {

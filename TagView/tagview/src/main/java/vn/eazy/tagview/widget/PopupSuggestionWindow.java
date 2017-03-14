@@ -53,11 +53,15 @@ public class PopupSuggestionWindow extends RelativePopupWindow {
             setAnimationStyle(0);
         }
 
-//        layoutData.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
+        layoutData.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
 
         if (!EventBus.getDefault().isRegistered(this)) {
             EventBus.getDefault().register(this);
         }
+    }
+
+    public LinearLayout getLayoutData() {
+        return layoutData;
     }
 
     @Subscribe

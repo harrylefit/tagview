@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import vn.eazy.tagview.R;
 import vn.eazy.tagview.model.SimpleData;
-import vn.eazy.tagview.widget.PopupSuggestionWindow;
 
 /**
  * Created by Harry on 2/15/17.
@@ -17,8 +16,8 @@ import vn.eazy.tagview.widget.PopupSuggestionWindow;
 
 public class EazySuggestionAdapter extends SuggestionAdapter<SimpleData, EazySuggestionAdapter.ViewHolder> {
 
-    public EazySuggestionAdapter(Context context) {
-        super(context);
+    public EazySuggestionAdapter(Context context,int heightOfItem) {
+        super(context,heightOfItem);
     }
 
     @Override
