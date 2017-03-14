@@ -121,7 +121,7 @@ public class TagEditTextView<T extends BaseData> extends AppCompatEditText imple
                 posWindow = new int[2];
             }
             getLocationOnScreen(posWindow);
-            suggestionWindow.showAtLocation(TagEditTextView.this, Gravity.START, 0, posWindow[1] - calcHeightOfPopup());
+            suggestionWindow.showAtLocation(TagEditTextView.this, Gravity.START|Gravity.TOP, 0, posWindow[1] - calcHeightOfPopup());
         } else {
             suggestionWindow.showAsDropDown(this, RelativePopupWindow.VerticalPosition.BELOW
                     , RelativePopupWindow.HorizontalPosition.LEFT);

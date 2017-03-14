@@ -34,7 +34,6 @@ public class PopupSuggestionWindow extends RelativePopupWindow {
     public PopupSuggestionWindow(Context context, int widthPopup) {
         super(context);
         setContentView(LayoutInflater.from(context).inflate(R.layout.listview_popup, null));
-        setWidth(widthPopup);
         setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
         setFocusable(false);
         setOutsideTouchable(true);
