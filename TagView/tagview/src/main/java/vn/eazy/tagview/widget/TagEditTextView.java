@@ -135,6 +135,7 @@ public class TagEditTextView<T extends BaseData> extends AppCompatEditText imple
             lpPopup = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         }
         if (sizeOfAllItems < sizeCurrentOfPopup) {
+            lpPopup.height = ViewGroup.LayoutParams.WRAP_CONTENT;
             suggestionWindow.getLayoutData().setLayoutParams(lpPopup);
             return sizeOfAllItems;
         } else {
