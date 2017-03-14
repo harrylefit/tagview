@@ -38,7 +38,7 @@
     <vn.eazy.tagview.widget.TagEditTextView
         android:id="@+id/tvInput2"
         android:layout_alignParentBottom="true"
-        android:layout_width="match_parent"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:textSize="20sp"
         app:ttv_color_hashtag="@color/colorPrimary"
