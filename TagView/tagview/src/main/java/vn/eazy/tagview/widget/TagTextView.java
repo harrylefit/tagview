@@ -4,10 +4,13 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.support.v7.widget.AppCompatTextView;
 import android.text.Html;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.widget.TextView;
+
+import java.util.Collections;
+import java.util.List;
 
 import vn.eazy.tagview.R;
 import vn.eazy.tagview.core.ActiveHashTag;
@@ -16,7 +19,7 @@ import vn.eazy.tagview.core.ActiveHashTag;
  * Created by Harry on 2/10/17.
  */
 
-public class TagTextView extends TextView {
+public class TagTextView extends AppCompatTextView {
     private boolean isSupportHtml;
     private boolean isEnableHashtag;
     private boolean isEnableMention;
@@ -106,6 +109,13 @@ public class TagTextView extends TextView {
 
     public void setColorForLinkable(int color) {
 
+    }
+
+    public List<String> getAllLinks(boolean isHashTag) {
+        if(activeHashTag == null){
+            return Collections.emptyList();
+        }
+        return activeHashTag.getAllLinks(isHashTag);
     }
 
     public void setHashTagClickListener(ActiveHashTag.OnHashTagClickListener hashTagClickListener) {

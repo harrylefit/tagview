@@ -356,18 +356,17 @@ public final class ActiveHashTag implements ClickableColorSpan.OnHashTagClickLis
         }
     }
 
-    public List<String> getAllHashTags(boolean withHashes) {
+    public List<String> getAllLinks(boolean isHashTag) {
 
         String text = textView.getText().toString();
         Spannable spannable = (Spannable) textView.getText();
 
         Set<String> hashTags = new LinkedHashSet<>();
-
-        for (CharacterStyle span : spannable.getSpans(0, text.length(), CharacterStyle.class)) {
-            hashTags.add(
-                    text.substring(!withHashes ? spannable.getSpanStart(span) + 1/*skip "#" sign*/
-                                    : spannable.getSpanStart(span),
-                            spannable.getSpanEnd(span)));
+        String[] hashTagsSplit = text.split(" ");
+        for (String content : hashTagsSplit) {
+            if (content.charAt(0) == (isHashTag ? Constant.SHARP : Constant.AT)) {
+                hashTags.add(content.substring(1, content.length()));
+            }
         }
 
         if (null != hashTags) Log.d(TAG, " getAllHashTags hashTags result " + hashTags);
@@ -375,9 +374,6 @@ public final class ActiveHashTag implements ClickableColorSpan.OnHashTagClickLis
         return new ArrayList<>(hashTags);
     }
 
-    public List<String> getAllHashTags() {
-        return getAllHashTags(false);
-    }
 
     @Override
     public void onHashTagClicked(String hashTag) {

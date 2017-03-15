@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity implements ActiveHashTag.OnH
         String content = "<b>Harry</b> #harry-aa @long #jon <i>Long</i> #john @julian";
         tvContent.appendText(content);
         tvContent.setHashTagClickListener(this);
-
         tvInput = (TagEditTextView) findViewById(R.id.tvInput);
         tvInput.setHashTagClickListener(this);
         tvInput.setOnTypingListener(this);

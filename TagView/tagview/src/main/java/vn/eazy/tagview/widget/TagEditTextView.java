@@ -19,6 +19,9 @@ import android.widget.FrameLayout;
 
 import com.labo.kaji.relativepopupwindow.RelativePopupWindow;
 
+import java.util.Collections;
+import java.util.List;
+
 import vn.eazy.tagview.R;
 import vn.eazy.tagview.adapter.SuggestionAdapter;
 import vn.eazy.tagview.core.ActiveHashTag;
@@ -154,6 +157,13 @@ public class TagEditTextView<T extends BaseData> extends AppCompatEditText imple
         }
 
 
+    }
+
+    public List<String> getAllLinks(boolean isHashTag) {
+        if(activeHashTag == null){
+            return Collections.emptyList();
+        }
+        return activeHashTag.getAllLinks(isHashTag);
     }
 
     @Override
