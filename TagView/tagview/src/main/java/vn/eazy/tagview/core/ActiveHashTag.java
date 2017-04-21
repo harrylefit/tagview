@@ -296,7 +296,7 @@ public final class ActiveHashTag implements ClickableColorSpan.OnHashTagClickLis
                 }
             }
 
-            boolean isValidSign = Character.isLetterOrDigit(sign) || hashTagCharsList.contains(sign) || sign == '-' || sign == '.';
+            boolean isValidSign = Character.isLetterOrDigit(sign) || hashTagCharsList.contains(sign) || sign == '-' || sign == '.' || sign == '_';
             if (!isValidSign) {
                 nextNotLetter = index;
                 break;

@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements ActiveHashTag.OnH
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         tvContent = (TagTextView) findViewById(R.id.tvContent);
-        String content = "<b>Harry</b> #harry-aa @long #j_on <i>Long</i> #john @julian";
+        String content = "<b>Harry</b> #harry-aa @long #heavy_enginneering <i>Long</i> #john @julian";
         tvContent.appendText(content);
         tvContent.setHashTagClickListener(this);
         tvInput = (TagEditTextView) findViewById(R.id.tvInput);
