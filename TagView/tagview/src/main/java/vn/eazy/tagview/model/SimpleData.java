@@ -41,6 +41,6 @@ public class SimpleData implements BaseData {
 
     @Override
     public String getTag() {
-        return "ss";
+        return getTitle();
     }
 }

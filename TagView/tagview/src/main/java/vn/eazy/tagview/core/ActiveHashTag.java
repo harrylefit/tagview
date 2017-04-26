@@ -217,7 +217,7 @@ public final class ActiveHashTag implements ClickableColorSpan.OnHashTagClickLis
         } else {
             String[] contents = text.toString().substring(indexOfLastHashTag + 1, text.length()).toString().split(" ");
             if (contents.length != 0) {
-                return contents[0].trim();
+                return contents[contents.length - 1].trim();
             }
             return "";
         }
@@ -231,7 +231,7 @@ public final class ActiveHashTag implements ClickableColorSpan.OnHashTagClickLis
         } else {
             String[] contents = text.toString().substring(indexOfLastMention + 1, text.length()).toString().split(" ");
             if (contents.length != 0) {
-                return contents[0].trim();
+                return contents[contents.length - 1].trim();
             }
             return "";
         }

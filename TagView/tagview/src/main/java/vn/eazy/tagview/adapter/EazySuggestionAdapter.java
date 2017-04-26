@@ -28,6 +28,7 @@ public class EazySuggestionAdapter extends SuggestionAdapter<SimpleData, EazySug
     @Override
     protected void onSuggestBindViewHolder(ViewHolder holder, int pos, SimpleData data) {
         holder.tvTitle.setText(data.getItemTitle());
+
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
