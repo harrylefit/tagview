@@ -44,15 +44,21 @@ public class MainActivity extends AppCompatActivity implements ActiveHashTag.OnH
         tvInput2.setOnTypingListener(this);
 
         eazySuggestionAdapter = new EazySuggestionAdapter(getApplicationContext(),dpToPx(60,getApplicationContext()));
+
+        List<SimpleData> simpleDatas = new ArrayList<>();
+        simpleDatas.add(new SimpleData("Harry", "Harry"));
+        simpleDatas.add(new SimpleData("Henry","Henry"));
+        simpleDatas.add(new SimpleData("John", "Harry"));
+        simpleDatas.add(new SimpleData("Brian", "Harry"));
+        simpleDatas.add(new SimpleData("Ben", "Harry"));
+
+        eazySuggestionAdapter.addAll(simpleDatas);
+
         tvInput.setSuggestionAdapter(eazySuggestionAdapter);
 
         tvInput2.setSuggestionAdapter(eazySuggestionAdapter);
 
-        List<SimpleData> simpleDatas = new ArrayList<>();
-        simpleDatas.add(new SimpleData("Harry", "SS"));
-        simpleDatas.add(new SimpleData("John", "SS"));
-        simpleDatas.add(new SimpleData("Brian", "SS"));
-        simpleDatas.add(new SimpleData("Ben", "SS"));
+
 //        simpleDatas.add(new SimpleData("Ray", "SS"));
 //        simpleDatas.add(new SimpleData("Liam", "SS"));
 //        simpleDatas.add(new SimpleData("Louis", "SS"));
