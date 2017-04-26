@@ -141,7 +141,7 @@ public final class ActiveHashTag implements ClickableColorSpan.OnHashTagClickLis
                     textView.getText().toString().lastIndexOf(getLastHashTag(textView.getText())) : 0;
             if (indexLastMention == textView.length() || indexLastHashTag > indexLastMention) {
                 String text = textView.getText().toString().substring(0, indexLastHashTag);
-                textView.setText(text + "#" + suggestionItemEvent.getData().getTag());
+                textView.setText(text + suggestionItemEvent.getData().getTag());
 
             } else {
                 textView.setText(textView.getText().toString().replace("@" + getLastMention(textView.getText())
