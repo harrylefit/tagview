@@ -2,10 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -16,18 +16,23 @@
         android:id="@+id/tvContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="3"
+        app:ttv_support_html="true"
+        app:ttv_enable_hashtag="true"
+        app:ttv_enable_mention="true"
+        android:text="asdlasldkasjdlkasjdlkasjdklasdlkasjdlaksdjlkasjdlskadjalskdjsalkdjaskljdlkasjdklasjdlkasjdlkasjdklasjdalskdjaskldjalksdjsakljdaskdj"
         android:textSize="20sp"
         app:ttv_color_hashtag="@color/colorPrimary"
         app:ttv_color_mention="@color/colorAccent"
-        app:ttv_enable_hashtag="true"
-        app:ttv_enable_mention="true"
-        app:ttv_support_html="true" />
+
+         />
 
     <vn.eazy.tagview.widget.TagEditTextView
         android:id="@+id/tvInput"
-        android:layout_below="@+id/tvContent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/tvContent"
         android:textSize="20sp"
         app:ttv_color_hashtag="@color/colorPrimary"
         app:ttv_color_mention="@color/colorAccent"
@@ -37,9 +42,9 @@
 
     <vn.eazy.tagview.widget.TagEditTextView
         android:id="@+id/tvInput2"
-        android:layout_alignParentBottom="true"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:textSize="20sp"
         app:ttv_color_hashtag="@color/colorPrimary"
         app:ttv_color_mention="@color/colorAccent"

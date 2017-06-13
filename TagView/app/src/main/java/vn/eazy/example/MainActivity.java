@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements ActiveHashTag.OnH
         tvContent = (TagTextView) findViewById(R.id.tvContent);
         String content = "<b>Harry</b> #harry-aa @long #heavy_enginneering <i>Long</i> #john @julian";
         tvContent.appendText(content);
+//        tvContent.setText(tvContent.getText().toString().replaceAll("(\\t|\\r?\\n)", " "));
         tvContent.setHashTagClickListener(this);
         tvInput = (TagEditTextView) findViewById(R.id.tvInput);
         tvInput.setHashTagClickListener(this);
@@ -43,11 +44,11 @@ public class MainActivity extends AppCompatActivity implements ActiveHashTag.OnH
         tvInput2.setHashTagClickListener(this);
         tvInput2.setOnTypingListener(this);
 
-        eazySuggestionAdapter = new EazySuggestionAdapter(getApplicationContext(),dpToPx(60,getApplicationContext()));
+        eazySuggestionAdapter = new EazySuggestionAdapter(getApplicationContext(), dpToPx(60, getApplicationContext()));
 
         List<SimpleData> simpleDatas = new ArrayList<>();
         simpleDatas.add(new SimpleData("Harry", "Harry"));
-        simpleDatas.add(new SimpleData("Henry","Henry"));
+        simpleDatas.add(new SimpleData("Henry", "Henry"));
         simpleDatas.add(new SimpleData("John", "Harry"));
         simpleDatas.add(new SimpleData("Brian", "Harry"));
         simpleDatas.add(new SimpleData("Ben", "Harry"));

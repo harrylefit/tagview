@@ -169,7 +169,7 @@ public final class ActiveHashTag implements ClickableColorSpan.OnHashTagClickLis
             if (textWatcherEnable) {
                 textView.addTextChangedListener(textWatcher);
             }
-            textView.setText(textView.getText(), TextView.BufferType.SPANNABLE);
+//            textView.setText(textView.getText(), TextView.BufferType.SPANNABLE);
 
             if (null != onHashTagClickListener) {
                 if (textWatcherEnable || null == textView.getMovementMethod()) {
